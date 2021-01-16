@@ -1,0 +1,139 @@
+<!doctype html><html lang=en><head><title>Deploy docker swarm use multi consul and swarm-manager :: Coding The Life — A simple theme for Hugo</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Architecture Prepare # useradd mfg # passwd mfg # echo &amp;#39; mfg ALL=(ALL) NOPASSWD: ALL&amp;#39; &amp;gt;&amp;gt; /etc/sudoers # exit $ ssh &amp;lt;no_root&amp;gt;@*.*.*.* $ curl -fsSL https://get.docker.com/ | sh $ sudo usermod -aG docker $(whoami) $ sudo systemctl restart docker &amp;amp;&amp;amp; sudo systemctl enable docker Consul ##################################################################################################### # consul https://hub.docker.com/r/progrium/consul/  # https://github.com/gliderlabs/docker-consul  # https://docs.docker.com/swarm/reference/manage/  # https://docs.docker.com/swarm/reference/join/ ##################################################################################################### Running a real Consul cluster in a production environment Setting up a real cluster on separate hosts is very similar to our single host cluster setup process, but with a few differences: We assume there is a private network between hosts."><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/posts/deploy-docker-swarm-use-multi-consul-and-swarm-manager/><link rel=stylesheet href=/assets/style.css><link rel=stylesheet href=/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/img/favicon.png><meta name=twitter:card content="summary"><meta name=twitter:title content="Deploy docker swarm use multi consul and swarm-manager"><meta name=twitter:description content="Architecture Prepare # useradd mfg # passwd mfg # echo ' mfg ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers # exit $ ssh <no_root>@*.*.*.* $ curl -fsSL https://get.docker.com/ | sh $ sudo usermod -aG docker $(whoami) $ sudo systemctl restart docker && sudo systemctl enable docker Consul ##################################################################################################### # consul https://hub.docker.com/r/progrium/consul/  # https://github.com/gliderlabs/docker-consul  # https://docs.docker.com/swarm/reference/manage/  # https://docs.docker.com/swarm/reference/join/ ##################################################################################################### Running a real Consul cluster in a production environment Setting up a real cluster on separate hosts is very similar to our single host cluster setup process, but with a few differences: We assume there is a private network between hosts."><meta property="og:title" content="Deploy docker swarm use multi consul and swarm-manager"><meta property="og:description" content="Architecture Prepare # useradd mfg # passwd mfg # echo ' mfg ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers # exit $ ssh <no_root>@*.*.*.* $ curl -fsSL https://get.docker.com/ | sh $ sudo usermod -aG docker $(whoami) $ sudo systemctl restart docker && sudo systemctl enable docker Consul ##################################################################################################### # consul https://hub.docker.com/r/progrium/consul/  # https://github.com/gliderlabs/docker-consul  # https://docs.docker.com/swarm/reference/manage/  # https://docs.docker.com/swarm/reference/join/ ##################################################################################################### Running a real Consul cluster in a production environment Setting up a real cluster on separate hosts is very similar to our single host cluster setup process, but with a few differences: We assume there is a private network between hosts."><meta property="og:type" content="article"><meta property="og:url" content="/posts/deploy-docker-swarm-use-multi-consul-and-swarm-manager/"><meta property="og:site_name" content="Coding The Life"></head><body class=dark-theme><div class=container><header class=header><span class=header__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>$ cd /home</span>
+<span class=logo__cursor></span></a><span class=header__right><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/about>About</a></li><li><a href=/showcase>Showcase</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/about>About</a></li><li><a href=/showcase>Showcase</a></li></ul></nav><span class=menu-trigger><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></span><span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41C32.4934 41 41 32.4934 41 22 41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg></span></span></span></header><div class=content><div class=post><h1 class=post-title><a href=/posts/deploy-docker-swarm-use-multi-consul-and-swarm-manager/>Deploy docker swarm use multi consul and swarm-manager</a></h1><div class=post-meta></div><span class=post-tags>#<a href=/tags/docker/>Docker</a>&nbsp;
+#<a href=/tags/swarm/>Swarm</a>&nbsp;
+#<a href=/tags/consul/>Consul</a>&nbsp;</span><div class=post-content><h2 id=architecture>Architecture</h2><p><img src=https://ws2.sinaimg.cn/large/006tKfTcgy1fjj6athl6ij30kk0ardgm.jpg alt></p><h2 id=prepare>Prepare</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># useradd mfg</span>
+<span style=color:#75715e># passwd mfg</span>
+<span style=color:#75715e># echo &#39;</span>
+mfg        ALL<span style=color:#f92672>=(</span>ALL<span style=color:#f92672>)</span>       NOPASSWD: ALL<span style=color:#960050;background-color:#1e0010>&#39;</span> &gt;&gt; /etc/sudoers
+<span style=color:#75715e># exit</span>
+$ ssh &lt;no_root&gt;@*.*.*.*
+$ curl -fsSL https://get.docker.com/ | sh
+$ sudo usermod -aG docker <span style=color:#66d9ef>$(</span>whoami<span style=color:#66d9ef>)</span>
+$ sudo systemctl restart docker <span style=color:#f92672>&amp;&amp;</span> sudo systemctl enable docker
+</code></pre></div><h2 id=consul>Consul</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>#####################################################################################################</span>
+<span style=color:#75715e># consul  https://hub.docker.com/r/progrium/consul/  </span>
+<span style=color:#75715e># https://github.com/gliderlabs/docker-consul </span>
+<span style=color:#75715e># https://docs.docker.com/swarm/reference/manage/ </span>
+<span style=color:#75715e># https://docs.docker.com/swarm/reference/join/</span>
+<span style=color:#75715e>#####################################################################################################</span>
+
+Running a real Consul cluster in a production environment
+Setting up a real cluster on separate hosts is very similar to our single host cluster setup process, but with a few differences:
+
+We assume there is a private network between hosts. Each host should have an IP on this private network
+We<span style=color:#e6db74>&#39;re going to pass this private IP to Consul via the -advertise flag
+</span><span style=color:#e6db74>We&#39;</span>re going to publish all ports, including internal Consul ports <span style=color:#f92672>(</span>8300, 8301, 8302<span style=color:#f92672>)</span>, on this IP
+We set up a volume at /data <span style=color:#66d9ef>for</span> persistence. As an example, we<span style=color:#e6db74>&#39;ll bind mount /mnt from the host
+</span><span style=color:#e6db74>Assuming we&#39;</span>re on a host with a private IP of 172.16.2.9 and the IP of docker bridge docker0 is 172.17.0.1 we can start the first host agent:
+
+$ docker run --restart<span style=color:#f92672>=</span>always --name consul-01 -d -h node1 -v /data/consul/data:/data <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8300:8300 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8301:8301 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8301:8301/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8302:8302 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8302:8302/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8400:8400 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.9:8500:8500 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.17.0.1:53:53/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    progrium/consul -server -advertise 172.16.2.9 -bootstrap-expect <span style=color:#ae81ff>3</span>
+
+<span style=color:#75715e>## On the second host, we&#39;d run the same thing, but passing a -join to the first node&#39;s IP. Let&#39;s say the private IP for this host is 172.16.2.10:</span>
+
+$ docker run --restart<span style=color:#f92672>=</span>always --name consul-02 -d -h node2 -v /data/consul/data:/data  <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8300:8300 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8301:8301 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8301:8301/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8302:8302 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8302:8302/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8400:8400 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.10:8500:8500 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.17.0.1:53:53/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    progrium/consul -server -advertise 172.16.2.10 -join 172.16.2.9
+
+<span style=color:#75715e>## And the third host with an IP of 172.16.2.11:</span>
+
+$ docker run --restart<span style=color:#f92672>=</span>always --name consul-03 -d -h node3 -v /data/consul/data:/data  <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8300:8300 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8301:8301 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8301:8301/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8302:8302 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8302:8302/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8400:8400 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.16.2.11:8500:8500 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    -p 172.17.0.1:53:53/udp <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>    progrium/consul -server -advertise 172.16.2.11 -join 172.16.2.9
+
+<span style=color:#75715e>## That&#39;s it! Once this last node connects, it will bootstrap into a cluster. You now have a working cluster running in production on a private network.</span>
+</code></pre></div><h2 id=lb-for-consul-using-nginx-或者使用云服务商的lb>Lb for consul using nginx [或者使用云服务商的lb]</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker run -d --name nginx -v <span style=color:#e6db74>${</span>HOME<span style=color:#e6db74>}</span>/nginx/conf.d:/etc/nginx/conf.d -p 8000:80 nginx:1.13.3-alpine
+$ vi <span style=color:#e6db74>${</span>HOME<span style=color:#e6db74>}</span>/nginx/conf.d/consul.conf
+upstream docker-consul <span style=color:#f92672>{</span>
+  server 172.16.2.9:8500;
+  server 172.16.2.10:8500;
+  server 172.16.2.11:8500;
+<span style=color:#f92672>}</span>
+
+server <span style=color:#f92672>{</span>
+  listen 80;
+  server_name nginx-consul;
+
+  location / <span style=color:#f92672>{</span>
+    proxy_pass                          http://docker-consul;
+    proxy_set_header  Host              $http_host;
+    proxy_set_header  X-Real-IP         $remote_addr; <span style=color:#75715e># pass on real client&#39;s IP</span>
+    proxy_set_header  X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header  X-Forwarded-Proto $scheme;
+  <span style=color:#f92672>}</span>
+
+<span style=color:#f92672>}</span>
+
+$ docker cp consul.conf nginx:/etc/nginx/conf.d
+$ docker exec -it nginx nginx -s reload
+
+</code></pre></div><h2 id=swarm-manager-nodes>Swarm manager nodes</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>#####################################################################################################</span>
+<span style=color:#75715e># [Swarm: A Docker-native clustering system | Docker Documentation](https://docs.docker.com/swarm/reference/swarm/)</span>
+<span style=color:#75715e># [High availability in Docker Swarm | Docker Documentation](https://docs.docker.com/swarm/multi-manager-setup/)</span>
+<span style=color:#75715e># [Build a Swarm cluster for production | Docker Documentation](https://docs.docker.com/swarm/install-manual/#step-2-create-your-instances)</span>
+<span style=color:#75715e>#####################################################################################################</span>
+
+<span style=color:#75715e>#### swarm manager</span>
+
+$ docker run -d -p 4000:4000 --restart<span style=color:#f92672>=</span>always --name<span style=color:#f92672>=</span>swarm-manager-01 swarm manage -H :4000 --replication --advertise 172.16.2.9:4000 consul://172.16.2.12:8500
+
+$ docker run -d -p 4000:4000 --restart<span style=color:#f92672>=</span>always --name<span style=color:#f92672>=</span>swarm-manager-02 swarm manage -H :4000 --replication --advertise 172.16.2.10:4000 consul://172.16.2.12:8500
+
+$ docker run -d -p 4000:4000 --restart<span style=color:#f92672>=</span>always --name<span style=color:#f92672>=</span>swarm-manager-03 swarm manage -H :4000 --replication --advertise 172.16.2.11:4000 consul://172.16.2.12:8500
+
+</code></pre></div><h2 id=swarm-slave-nodes>Swarm slave nodes</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo vi /usr/lib/systemd/system/docker.service
+
+ExecStart<span style=color:#f92672>=</span>/usr/bin/dockerd
+
+change to  <span style=color:#f92672>===</span>&gt;&gt;&gt;
+
+ExecStart<span style=color:#f92672>=</span>/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store<span style=color:#f92672>=</span>consul://172.16.2.12:8500 --cluster-advertise<span style=color:#f92672>=</span>172.16.2.9:2375
+
+
+<span style=color:#75715e>#### swarm slave</span>
+$ docker run -d --restart<span style=color:#f92672>=</span>always --name<span style=color:#f92672>=</span>swarm-slave swarm join --advertise<span style=color:#f92672>=</span>172.16.2.10:2375 consul://172.16.2.12:8500
+
+$ sudo systemctl daemon-reload <span style=color:#f92672>&amp;&amp;</span> sudo systemctl restart docker
+</code></pre></div><h2 id=test>Test</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker -H :4000 run -d --name nginx-test -e constraint:node<span style=color:#f92672>==</span>iZuf654mu2j1ottom86sm9Z -p 80:80 nginx:1.13.3-alpine
+
+</code></pre></div><h2 id=maintain>Maintain</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>## common command</span>
+$ docker -H :4000 info
+$ docker -H :4000 ps
+$ docker-compose -H :4000 -f ~/docker-compose.yml ps
+
+<span style=color:#75715e>## common issue</span>
+* 如果出现docker -H :4000 info 显示没有节点或者缺少某个节点，到缺少的节点上执行docker restart slave
+</code></pre></div><h2 id=other-danger>Other [Danger!!!]</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ docker stop <span style=color:#66d9ef>$(</span>docker ps -a -q<span style=color:#66d9ef>)</span> <span style=color:#f92672>&amp;&amp;</span> docker rm <span style=color:#66d9ef>$(</span>docker ps -a -q<span style=color:#66d9ef>)</span> <span style=color:#f92672>&amp;&amp;</span> sudo rm -rf /data/consul <span style=color:#f92672>&amp;&amp;</span> sudo rm -rf /etc/docker/key.json
+</code></pre></div><h2 id=reference>Reference</h2><p><a href=https://hub.docker.com/r/progrium/consul/>https://hub.docker.com/r/progrium/consul/</a>
+<a href=https://github.com/gliderlabs/docker-consul>GitHub - gliderlabs/docker-consul: Dockerized Consul</a>
+<a href=https://docs.docker.com/swarm/reference/manage/>manage — Create a Swarm manager | Docker Documentation</a>
+<a href=https://docs.docker.com/swarm/reference/join/>join — Create a Swarm node | Docker Documentation</a>
+<a href=https://docs.docker.com/swarm/reference/swarm/>Swarm: A Docker-native clustering system | Docker Documentation</a> <a href=https://docs.docker.com/swarm/multi-manager-setup/>High availability in Docker Swarm | Docker Documentation</a>
+<a href=https://docs.docker.com/swarm/install-manual/#step-2-create-your-instances>Build a Swarm cluster for production | Docker Documentation</a></p></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/posts/github-desktop-bitbucket/><span class=button__icon>←</span>
+<span class=button__text>Clone Bitbucket Repository and Add it to GitHub Desktop App (Mac)</span></a></span>
+<span class="button next"><a href=/posts/deploy-kubernetes/><span class=button__text>Deploy kubernetes [Continually updating]</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>$ cd /home</span>
+<span class=logo__cursor></span></a><div class=copyright><span>© 2021 Powered by <a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></span>
+<span>Theme created by <a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span></div></div></footer><script src=/assets/main.js></script><script src=/assets/prism.js></script></div></body></html>

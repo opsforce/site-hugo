@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Coding The Life</title><link>/tags/git/</link><description>Recent content in Git on Coding The Life</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 19 Oct 2015 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>修改git的远程url地址git或者https</title><link>/posts/how-to-change-git-remote-url-in-https-and-git/</link><pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate><guid>/posts/how-to-change-git-remote-url-in-https-and-git/</guid><description>
+git remote set-url 命令是修改存在的远程库的 URL
+提示：了解 HTTPS 和 SSH URL 的不同之处，请查看 “我应该用哪种远程 URL”
+这个命令带两个参数
+已经存在远程名字，如 origin 新的远程的 URL ，如： https://github.com/USERNAME/REPOSITORY_2.git 如果你用https 更新代码 git@github.com:USER/REPOSITORY_2.git 如果你用 SSH 更新代码 ##Switching remote URLs from SSH to HTTPS 从 SSH 切换 远程 URL 到 HTTPS
+1.打开终端( Mac 和 Linux 用户)或者 命令行 (Windows 用户).
+2.更改当前工作路径到你的本地项目
+3.列出你已经存在的远程库，为了获取到你想要修改的远程的名字
+$ git remote -v # origin git@github.com:USERNAME/REPOSITORY.git (fetch) # origin git@github.com:USERNAME/REPOSITORY.git (push) 4.使用 remote set-url 修改从 SSH 切换 远程 URL 到 HTTPS</description></item><item><title>Clone Bitbucket Repository and Add it to GitHub Desktop App (Mac)</title><link>/posts/github-desktop-bitbucket/</link><pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate><guid>/posts/github-desktop-bitbucket/</guid><description>
+You can’t clone a Bitbucket repo using GithHub Desktop directly. Instead you would have to:
+Clone the Bitbucket repo locally via command line. Add the cloned repository to your GitHub Desktop app. After completing these 2 steps, you’ll be able to execute sync, push, pull, commit, and other git commands available in GitHub Desktop for your Bitbucket repository just as you would for any GitHub repository.
+You will need your Bitbucket repository’s git URL as available on the Overview page of your repository:</description></item></channel></rss>

@@ -1,2 +1,72 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Coding The Life</title><link>/posts/</link><description>Recent content in Posts on Coding The Life</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 02 Jan 2021 17:21:42 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Site Use Hugo</title><link>/posts/site-use-hugo/</link><pubDate>Sat, 02 Jan 2021 17:21:42 +0800</pubDate><guid>/posts/site-use-hugo/</guid><description>
-&lt;img src="/images/Snipaste_2021-01-02_17-24-59.png"/></description></item></channel></rss>
+&lt;img src="/images/Snipaste_2021-01-02_17-24-59.png"/></description></item><item><title>Hi, sublime text 3</title><link>/posts/hi-sublime-text-3/</link><pubDate>Sat, 09 Dec 2017 00:00:00 +0000</pubDate><guid>/posts/hi-sublime-text-3/</guid><description>
+安装Package Control Tools -&amp;gt; Install Package Control
+安装主题 到package control里面搜索相应主题安装即可，推荐一款主题Ayu
+Preferences.sublime-settings-User { &amp;quot;font_size&amp;quot;: 13, &amp;quot;ignored_packages&amp;quot;: [ &amp;quot;Vintage&amp;quot; ], &amp;quot;theme&amp;quot;: &amp;quot;ayu-light.sublime-theme&amp;quot;, &amp;quot;color_scheme&amp;quot;: &amp;quot;Packages/ayu/ayu-light.tmTheme&amp;quot;, &amp;quot;update_check&amp;quot;: false // 禁止软件自动更新 } plugins Package Control - 包控制管理工具 Alignment - 行对齐工具 SideBarEnhancements - 侧边栏右键加强 A File Icon - 主题ayu依赖的图标插件 Git
+设置 package 代理(shadowsocks) Preferences -&amp;gt; Package Settings -&amp;gt; Package Control -&amp;gt; Settings - User
+&amp;quot;http_proxy&amp;quot;: &amp;quot;http://127.0.0.1:1087&amp;quot;, &amp;quot;https_proxy&amp;quot;: &amp;quot;http://127.0.0.1:1087&amp;quot; 快捷键 Command+Shift+P - Package Control Command+, - Settings</description></item><item><title>Hi, iterm2 oh-my-zsh solarized</title><link>/posts/hi-iterm2-oh-my-zsh-solarized/</link><pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate><guid>/posts/hi-iterm2-oh-my-zsh-solarized/</guid><description>
+iTerm2 brew cask install iterm2 如果没安装homebrew，就直接官方网站下载安装包
+zsh http://ohmyz.sh/ https://github.com/robbyrussell/oh-my-zsh
+$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh % Total % Received % Xferd Average Speed Time Time Time Current Dload Upload Total Spent Left Speed 0 0 0 0 0 0 0 0 --:--:-- --:--:-- --:--:-- 0 100 4019 100 4019 0 0 3668 0 0:00:01 0:00:01 --:--:-- 2052k Cloning Oh My Zsh... Cloning into '/Users/opsforce/.oh-my-zsh'... remote: Counting objects: 852, done. remote: Compressing objects: 100% (716/716), done.</description></item><item><title>Remove All Iptables PREROUTING Nat Rules</title><link>/posts/remove-all-iptables-prerouting-nat-rules/</link><pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate><guid>/posts/remove-all-iptables-prerouting-nat-rules/</guid><description>
+To Flush iptables PREROUTING chains cannot be achieved by -F iptables option. To remove PREROUTING nat rules from you system first display all PREROUTING chains using a following iptables command:
+iptables -t nat --line-numbers -L As you can see the above command will display all PREROUTING chains with relevant line numbers. Next, we can use these line numbers to remove all PREROUTING chains one by one. For example to remove PREROUTING chain with line number 1 we can do:</description></item><item><title>修改git的远程url地址git或者https</title><link>/posts/how-to-change-git-remote-url-in-https-and-git/</link><pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate><guid>/posts/how-to-change-git-remote-url-in-https-and-git/</guid><description>
+git remote set-url 命令是修改存在的远程库的 URL
+提示：了解 HTTPS 和 SSH URL 的不同之处，请查看 “我应该用哪种远程 URL”
+这个命令带两个参数
+已经存在远程名字，如 origin 新的远程的 URL ，如： https://github.com/USERNAME/REPOSITORY_2.git 如果你用https 更新代码 git@github.com:USER/REPOSITORY_2.git 如果你用 SSH 更新代码 ##Switching remote URLs from SSH to HTTPS 从 SSH 切换 远程 URL 到 HTTPS
+1.打开终端( Mac 和 Linux 用户)或者 命令行 (Windows 用户).
+2.更改当前工作路径到你的本地项目
+3.列出你已经存在的远程库，为了获取到你想要修改的远程的名字
+$ git remote -v # origin git@github.com:USERNAME/REPOSITORY.git (fetch) # origin git@github.com:USERNAME/REPOSITORY.git (push) 4.使用 remote set-url 修改从 SSH 切换 远程 URL 到 HTTPS</description></item><item><title>跨平台同步Safari、IE、Chrome、Firefox的书签</title><link>/posts/sync-bookmarks-of-safari-ie-chrome-firefox/</link><pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate><guid>/posts/sync-bookmarks-of-safari-ie-chrome-firefox/</guid><description>
+Windows环境： 首先下载iCloud for Windows，下载地址
+iCloud Bookmarks for chrome 的下载地址：iCloud Bookmarks，官方出品，值得信赖。
+iCloud Bookmarks for firefox 的下载地址：iCloud 书签，官方出品，值得信赖。
+Mac环境： 啥都不用下载，只需要设置好iCloud。</description></item><item><title>Clone Bitbucket Repository and Add it to GitHub Desktop App (Mac)</title><link>/posts/github-desktop-bitbucket/</link><pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate><guid>/posts/github-desktop-bitbucket/</guid><description>
+You can’t clone a Bitbucket repo using GithHub Desktop directly. Instead you would have to:
+Clone the Bitbucket repo locally via command line. Add the cloned repository to your GitHub Desktop app. After completing these 2 steps, you’ll be able to execute sync, push, pull, commit, and other git commands available in GitHub Desktop for your Bitbucket repository just as you would for any GitHub repository.
+You will need your Bitbucket repository’s git URL as available on the Overview page of your repository:</description></item><item><title>Deploy docker swarm use multi consul and swarm-manager</title><link>/posts/deploy-docker-swarm-use-multi-consul-and-swarm-manager/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/deploy-docker-swarm-use-multi-consul-and-swarm-manager/</guid><description>
+Architecture Prepare # useradd mfg # passwd mfg # echo &amp;#39; mfg ALL=(ALL) NOPASSWD: ALL&amp;#39; &amp;gt;&amp;gt; /etc/sudoers # exit $ ssh &amp;lt;no_root&amp;gt;@*.*.*.* $ curl -fsSL https://get.docker.com/ | sh $ sudo usermod -aG docker $(whoami) $ sudo systemctl restart docker &amp;amp;&amp;amp; sudo systemctl enable docker Consul ##################################################################################################### # consul https://hub.docker.com/r/progrium/consul/ # https://github.com/gliderlabs/docker-consul # https://docs.docker.com/swarm/reference/manage/ # https://docs.docker.com/swarm/reference/join/ ##################################################################################################### Running a real Consul cluster in a production environment Setting up a real cluster on separate hosts is very similar to our single host cluster setup process, but with a few differences: We assume there is a private network between hosts.</description></item><item><title>Deploy kubernetes [Continually updating]</title><link>/posts/deploy-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/deploy-kubernetes/</guid><description>
+Architecture Tutorial Deploy docker-engine 1.12.6 on ubuntu 16.04 xenial [all node] $ sudo apt-get update $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D $ sudo apt-add-repository &amp;#39;deb https://apt.dockerproject.org/repo ubuntu-xenial main&amp;#39; $ sudo apt-get update $ sudo apt-cache policy docker-engine # find docker-engine version you need to install docker-engine: Installed: (none) Candidate: 17.05.0~ce-0~ubuntu-xenial Version table: 17.05.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.04.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.03.1~ce-0~ubuntu-xenial 500 500 https://apt.</description></item><item><title>fix-macos-mojave-ssh-connect-trouble</title><link>/posts/fix-macos-mojave-ssh-connect-trouble/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/fix-macos-mojave-ssh-connect-trouble/</guid><description>
+升级 macos mojave 10.14.1 后 ssh 远程服务器出现如下错误：
+packet_write_wait: Connection to *.*.*.* port 22: Broken pipe 其实是ssh客户端比较新导致的
+$ ssh -V OpenSSH_7.8p1, LibreSSL 2.7.3 只需添加ssh相关配置，可解决问题
+$ cat .ssh/config Host * IPQoS lowdelay throughput 这个问题困惑了我近半个月</description></item><item><title>Hello World</title><link>/posts/hello-world/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/hello-world/</guid><description>
+Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick Start Create a new post $ hexo new &amp;#34;My New Post&amp;#34; More info: Writing
+Run server $ hexo server More info: Server
+Generate static files $ hexo generate More info: Generating
+Deploy to remote sites $ hexo deploy More info: Deployment</description></item><item><title>Mac下配置Python2和Python3共存</title><link>/posts/how-to-config-python2-python3-all-in-macos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/how-to-config-python2-python3-all-in-macos/</guid><description>
+Mac默认是安装了Python2的，所以只需要安装Python3
+$ brew install python3 # 使用homebrew安装python3 $ python3 -V Python 3.6.5 $ brew install pyenv-virtualenv # 安装virtualenv 或者 $ sudo easy_install virtualenv # 安装virtualenv $ mkdir myenv &amp;amp;&amp;amp; cd myenv # 创建本地工作目录 $ which python3 # 找出Python3路径 /usr/local/bin/python3 # python2 $ virtualenv --no-site-packages pyenv # 配置Python2虚拟路径 $ source pyenv/bin/activate # 使Python2虚拟路径生效 $ deactivate # 使Python2虚拟路径失效 # python3 $ virtualenv --no-site-packages --python=/usr/local/bin/python3 pyenv3 # 配置Python3虚拟路径 $ source pyenv3/bin/activate # 使Python3虚拟路径生效 $ deactivate # 使Python3虚拟路径失效</description></item><item><title>My macOS Software list [Continually updating]</title><link>/posts/my-macos-software/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/my-macos-software/</guid><description>
+1password 6 - 密码管理 atom - 开发工具 bear - Markdown &amp;amp;&amp;amp; GTD boxy - 第三方Gmail for Mac calibre - 个人图书馆 cleanmymac 3 - 系统管理 docker dropbox dropdmg foxit reader - PDF view google chrome iina - 牛X的视频播放软件 instant translate - 牛X的翻译软件 istat menus - 状态栏显示系统状况 kindle kypass microsoft excel microsoft word microsoft powerpoint navicat premium - 关系型数据库图形化工具 neteasemusic - 网易云音乐 nextcloud parallels desktop - Mac上最牛X的虚拟化软件 robo 3t - MongoDB图形化工具 seafile client - 企业存储 shadowsocksx ng - 番·羽·土·啬 sketch - 矢量图设计工具 slack - 团队交流协作工具 sublime text - 开发工具 surge teampaper snap things - GTD工具 tower - GIT图形化工具 visual studio code - 开发工具 vu - instagram 第三方app webtorrent - Mac上最牛X的种子播放工具 wechat xcode - Mac自家开发工具 网易邮箱大师 订票助手 The Unarchiver - RAR解压缩 Reeder - RSS阅读 snappy - 截图工具 iPic &amp;amp;&amp;amp; iPic Mover - 上传图床工具并生成markdown格式 powershell - Azure终端工具</description></item><item><title>What DevOps needs?</title><link>/posts/what-devops-needs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/what-devops-needs/</guid><description>
+硬性要求：工具上的准备
+上文提到了工具链的打通，那么工具自然就需要做好准备。现将工具类型及对应的不完全列举整理如下：
+代码管理（SCM）：GitHub、GitLab、BitBucket、SubVersion
+构建工具：Ant、Gradle、maven
+自动部署：Capistrano、CodeDeploy
+持续集成（CI）：Jenkins、Bamboo、Hudson、
+配置管理：Ansible、Chef、Puppet、SaltStack、ScriptRock GuardRail
+容器：Docker、LXC、第三方厂商如AWS
+编排：Kubernetes、Core、Apache Mesos、DC/OS、Swarm
+服务注册与发现：Zookeeper、etcd、Consul
+脚本语言：python、ruby、shell
+日志管理：ELK、Logentries、Logrotate
+系统监控：Zabbix、Datadog、Graphite、Icinga、Nagios
+性能监控：AppDynamics、New Relic、Splunk
+压力测试：JMeter、Blaze Meter、loader.io
+预警：PagerDuty、pingdom、厂商自带如AWS SNS
+HTTP加速器：Varnish
+消息总线：ActiveMQ、SQS
+应用服务器：Tomcat、JBoss
+Web服务器：Apache、Nginx、IIS
+数据库：MySQL、Oracle、PostgreSQL等关系型数据库；cassandra、mongoDB、redis等NoSQL数据库
+项目管理（PM）：Jira、Asana、Taiga、Trello、Basecamp、Pivotal Tracker
+在工具的选择上，需要结合公司业务需求和技术团队情况而定。（注：更多关于工具的详细介绍可以参见此文：51 Best DevOps Tools for DevOps Engineers）</description></item><item><title>使用 Travis CI 自动部署 Hexo</title><link>/posts/use-travis-ci-to-auto-deploy-hexo-to-github/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/use-travis-ci-to-auto-deploy-hexo-to-github/</guid><description>
+branch: master - 网站源码 branch: gh-pages - html网页
+使用GitHub登录travis-ci.org
+登录后，点击红色区域选择想要自动部署的repo
+到GitHub-setting申请Personal access token
+得到Personal access token后，添加到travisci对应repo的环境变量GH_TOKEN
+编写.travis.yml，并上传到master分支
+# file: .travis.yml language: node_js #设置语言 node_js: stable #设置相应的版本 # S: Build Lifecycle install: - npm install #安装hexo及插件 #before_script: # - npm install -g gulp script: - hexo clean #清除 - hexo generate #生成静态网页 after_script: - cd ./public - git init - git config user.name &amp;quot;your name&amp;quot; #修改name - git config user.email &amp;quot;your email&amp;quot; #修改email - git add .</description></item><item><title>网站已开启ssl访问</title><link>/posts/enable-website-ssl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/enable-website-ssl/</guid><description>
+网站已开启ssl访问，使用的是cloudflare.com免费ssl服务。</description></item></channel></rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Develop on Coding The Life</title><link>/tags/develop/</link><description>Recent content in Develop on Coding The Life</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 09 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/develop/index.xml" rel="self" type="application/rss+xml"/><item><title>Hi, sublime text 3</title><link>/posts/hi-sublime-text-3/</link><pubDate>Sat, 09 Dec 2017 00:00:00 +0000</pubDate><guid>/posts/hi-sublime-text-3/</guid><description>
+安装Package Control Tools -&amp;gt; Install Package Control
+安装主题 到package control里面搜索相应主题安装即可，推荐一款主题Ayu
+Preferences.sublime-settings-User { &amp;quot;font_size&amp;quot;: 13, &amp;quot;ignored_packages&amp;quot;: [ &amp;quot;Vintage&amp;quot; ], &amp;quot;theme&amp;quot;: &amp;quot;ayu-light.sublime-theme&amp;quot;, &amp;quot;color_scheme&amp;quot;: &amp;quot;Packages/ayu/ayu-light.tmTheme&amp;quot;, &amp;quot;update_check&amp;quot;: false // 禁止软件自动更新 } plugins Package Control - 包控制管理工具 Alignment - 行对齐工具 SideBarEnhancements - 侧边栏右键加强 A File Icon - 主题ayu依赖的图标插件 Git
+设置 package 代理(shadowsocks) Preferences -&amp;gt; Package Settings -&amp;gt; Package Control -&amp;gt; Settings - User
+&amp;quot;http_proxy&amp;quot;: &amp;quot;http://127.0.0.1:1087&amp;quot;, &amp;quot;https_proxy&amp;quot;: &amp;quot;http://127.0.0.1:1087&amp;quot; 快捷键 Command+Shift+P - Package Control Command+, - Settings</description></item><item><title>What DevOps needs?</title><link>/posts/what-devops-needs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/posts/what-devops-needs/</guid><description>
+硬性要求：工具上的准备
+上文提到了工具链的打通，那么工具自然就需要做好准备。现将工具类型及对应的不完全列举整理如下：
+代码管理（SCM）：GitHub、GitLab、BitBucket、SubVersion
+构建工具：Ant、Gradle、maven
+自动部署：Capistrano、CodeDeploy
+持续集成（CI）：Jenkins、Bamboo、Hudson、
+配置管理：Ansible、Chef、Puppet、SaltStack、ScriptRock GuardRail
+容器：Docker、LXC、第三方厂商如AWS
+编排：Kubernetes、Core、Apache Mesos、DC/OS、Swarm
+服务注册与发现：Zookeeper、etcd、Consul
+脚本语言：python、ruby、shell
+日志管理：ELK、Logentries、Logrotate
+系统监控：Zabbix、Datadog、Graphite、Icinga、Nagios
+性能监控：AppDynamics、New Relic、Splunk
+压力测试：JMeter、Blaze Meter、loader.io
+预警：PagerDuty、pingdom、厂商自带如AWS SNS
+HTTP加速器：Varnish
+消息总线：ActiveMQ、SQS
+应用服务器：Tomcat、JBoss
+Web服务器：Apache、Nginx、IIS
+数据库：MySQL、Oracle、PostgreSQL等关系型数据库；cassandra、mongoDB、redis等NoSQL数据库
+项目管理（PM）：Jira、Asana、Taiga、Trello、Basecamp、Pivotal Tracker
+在工具的选择上，需要结合公司业务需求和技术团队情况而定。（注：更多关于工具的详细介绍可以参见此文：51 Best DevOps Tools for DevOps Engineers）</description></item></channel></rss>

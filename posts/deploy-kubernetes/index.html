@@ -1,0 +1,322 @@
+<!doctype html><html lang=en><head><title>Deploy kubernetes [Continually updating] :: Coding The Life — A simple theme for Hugo</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Architecture Tutorial Deploy docker-engine 1.12.6 on ubuntu 16.04 xenial [all node] $ sudo apt-get update $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D $ sudo apt-add-repository &amp;#39;deb https://apt.dockerproject.org/repo ubuntu-xenial main&amp;#39; $ sudo apt-get update $ sudo apt-cache policy docker-engine # find docker-engine version you need to install docker-engine: Installed: (none) Candidate: 17.05.0~ce-0~ubuntu-xenial Version table: 17.05.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.04.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.03.1~ce-0~ubuntu-xenial 500 500 https://apt."><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=/posts/deploy-kubernetes/><link rel=stylesheet href=/assets/style.css><link rel=stylesheet href=/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/img/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/img/favicon.png><meta name=twitter:card content="summary"><meta name=twitter:title content="Deploy kubernetes [Continually updating]"><meta name=twitter:description content="Architecture Tutorial Deploy docker-engine 1.12.6 on ubuntu 16.04 xenial [all node] $ sudo apt-get update $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D $ sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' $ sudo apt-get update $ sudo apt-cache policy docker-engine # find docker-engine version you need to install docker-engine: Installed: (none) Candidate: 17.05.0~ce-0~ubuntu-xenial Version table: 17.05.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.04.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.03.1~ce-0~ubuntu-xenial 500 500 https://apt."><meta property="og:title" content="Deploy kubernetes [Continually updating]"><meta property="og:description" content="Architecture Tutorial Deploy docker-engine 1.12.6 on ubuntu 16.04 xenial [all node] $ sudo apt-get update $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D $ sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' $ sudo apt-get update $ sudo apt-cache policy docker-engine # find docker-engine version you need to install docker-engine: Installed: (none) Candidate: 17.05.0~ce-0~ubuntu-xenial Version table: 17.05.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.04.0~ce-0~ubuntu-xenial 500 500 https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages 17.03.1~ce-0~ubuntu-xenial 500 500 https://apt."><meta property="og:type" content="article"><meta property="og:url" content="/posts/deploy-kubernetes/"><meta property="og:site_name" content="Coding The Life"></head><body class=dark-theme><div class=container><header class=header><span class=header__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>$ cd /home</span>
+<span class=logo__cursor></span></a><span class=header__right><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/about>About</a></li><li><a href=/showcase>Showcase</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/about>About</a></li><li><a href=/showcase>Showcase</a></li></ul></nav><span class=menu-trigger><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></span><span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41C32.4934 41 41 32.4934 41 22 41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg></span></span></span></header><div class=content><div class=post><h1 class=post-title><a href=/posts/deploy-kubernetes/>Deploy kubernetes [Continually updating]</a></h1><div class=post-meta></div><span class=post-tags>#<a href=/tags/docker/>Docker</a>&nbsp;
+#<a href=/tags/kubernetes/>Kubernetes</a>&nbsp;</span><div class=post-content><h2 id=architecture>Architecture</h2><p><img src=https://ws3.sinaimg.cn/large/006tKfTcgy1fjj6575asqj30kj0gn3zl.jpg alt></p><h2 id=tutorial>Tutorial</h2><h3 id=deploy-docker-engine-1126-on-ubuntu-1604-xenial-all-node>Deploy docker-engine 1.12.6 on ubuntu 16.04 xenial [all node]</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo apt-get update
+$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+$ sudo apt-add-repository <span style=color:#e6db74>&#39;deb https://apt.dockerproject.org/repo ubuntu-xenial main&#39;</span>
+$ sudo apt-get update
+$ sudo apt-cache policy docker-engine <span style=color:#75715e># find docker-engine version you need to install</span>
+docker-engine:
+  Installed: <span style=color:#f92672>(</span>none<span style=color:#f92672>)</span>
+  Candidate: 17.05.0~ce-0~ubuntu-xenial
+  Version table:
+     17.05.0~ce-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     17.04.0~ce-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     17.03.1~ce-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     17.03.0~ce-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.13.1-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.13.0-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.6-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.5-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.4-0~ubuntu-xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.3-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.2-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.1-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.12.0-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.2-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.1-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+     1.11.0-0~xenial <span style=color:#ae81ff>500</span>
+        <span style=color:#ae81ff>500</span> https://apt.dockerproject.org/repo ubuntu-xenial/main amd64 Packages
+
+<span style=color:#75715e>## 如果Ubuntu为14.04,建议先装上以下两个软件包。</span>
+$ apt-get install linux-image-extra-<span style=color:#66d9ef>$(</span>uname -r<span style=color:#66d9ef>)</span> linux-image-extra-virtual
+
+<span style=color:#75715e>## 这里安装docker-engine 1.12.6，官方兼容版本</span>
+$ sudo apt-get -y install docker-engine<span style=color:#f92672>=</span>1.12.6-0~ubuntu-xenial
+$ sudo systemctl restart docker <span style=color:#f92672>&amp;&amp;</span> sudo systemctl enable docker <span style=color:#f92672>&amp;&amp;</span> sudo systemctl status docker
+$ sudo usermod -aG docker <span style=color:#66d9ef>$(</span>whoami<span style=color:#66d9ef>)</span> <span style=color:#75715e># 退出当前终端，docker相关命令才能生效</span>
+</code></pre></div><h3 id=deploy-kubernetes-167-on-ubuntu-1604-xenial-all-node>Deploy kubernetes 1.6.7 on ubuntu 16.04 xenial [all node]</h3><h4 id=prepare>prepare</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo apt-get update <span style=color:#f92672>&amp;&amp;</span> sudo apt-get install -y apt-transport-https
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+$ sudo -i
+
+<span style=color:#75715e># cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list</span>
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+<span style=color:#75715e># apt-get update</span>
+<span style=color:#75715e># exit</span>
+</code></pre></div><h4 id=install-kubernetes>install kubernetes</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo apt-get purge -y kubelet kubeadm kubectl kubernetes-cni <span style=color:#75715e># remove latest kubernetes</span>
+$ sudo apt-get -y install kubelet<span style=color:#f92672>=</span>1.6.7-00 kubeadm<span style=color:#f92672>=</span>1.6.7-00 kubectl<span style=color:#f92672>=</span>1.6.7-00 kubernetes-cni<span style=color:#f92672>=</span>0.5.1-00 socat<span style=color:#f92672>=</span>1.7.3.1-1 <span style=color:#75715e># install specific version kubernetes</span>
+$ sudo apt-get install -d --reinstall kubelet<span style=color:#f92672>=</span>1.6.7-00 kubeadm<span style=color:#f92672>=</span>1.6.7-00 kubectl<span style=color:#f92672>=</span>1.6.7-00 kubernetes-cni<span style=color:#f92672>=</span>0.5.1-00 socat<span style=color:#f92672>=</span>1.7.3.1-1 <span style=color:#75715e># download specific version kubernetes</span>
+$ sudo ls -l /var/cache/apt/archives <span style=color:#75715e># checkout downloaded applications packages</span>
+</code></pre></div><h3 id=deploy-kubernetes-167-on-ubuntu-1604-xenial-master-node>Deploy kubernetes 1.6.7 on ubuntu 16.04 xenial [master node]</h3><h4 id=init-kubernetes-cluster>init kubernetes cluster</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo -i
+<span style=color:#75715e># kubeadm init --apiserver-advertise-address &lt;master node ip&gt;</span>
+<span style=color:#f92672>[</span>kubeconfig<span style=color:#f92672>]</span> Wrote KubeConfig file to disk: <span style=color:#e6db74>&#34;/etc/kubernetes/admin.conf&#34;</span>
+<span style=color:#f92672>[</span>apiclient<span style=color:#f92672>]</span> Created API client, waiting <span style=color:#66d9ef>for</span> the control plane to become ready
+<span style=color:#f92672>[</span>apiclient<span style=color:#f92672>]</span> All control plane components are healthy after 19.392838 seconds
+<span style=color:#f92672>[</span>apiclient<span style=color:#f92672>]</span> Waiting <span style=color:#66d9ef>for</span> at least one node to register
+<span style=color:#f92672>[</span>apiclient<span style=color:#f92672>]</span> First node has registered after 2.006249 seconds
+<span style=color:#f92672>[</span>token<span style=color:#f92672>]</span> Using token: 4d044f.b88c78b31c9fd9e4
+<span style=color:#f92672>[</span>apiconfig<span style=color:#f92672>]</span> Created RBAC rules
+<span style=color:#f92672>[</span>addons<span style=color:#f92672>]</span> Created essential addon: kube-proxy
+<span style=color:#f92672>[</span>addons<span style=color:#f92672>]</span> Created essential addon: kube-dns
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run <span style=color:#f92672>(</span>as a regular user<span style=color:#f92672>)</span>:
+
+  cp /etc/kubernetes/admin.conf $HOME/
+  chown <span style=color:#66d9ef>$(</span>id -u<span style=color:#66d9ef>)</span>:<span style=color:#66d9ef>$(</span>id -g<span style=color:#66d9ef>)</span> $HOME/admin.conf
+  export KUBECONFIG<span style=color:#f92672>=</span>$HOME/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run <span style=color:#e6db74>&#34;kubectl apply -f [podnetwork].yaml&#34;</span> with one of the options listed at:
+  http://kubernetes.io/docs/admin/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join --token 4****f.****78b31****9** &lt;master node ip&gt;:6443
+</code></pre></div><h4 id=install-weave-network-for-kubernetes>install weave network for kubernetes</h4><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl apply -f https://git.io/weave-kube-1.6
+<span style=color:#75715e>## 或者</span>
+$ kubectl apply -f weave-daemonset-k8s-1.6.yaml
+
+<span style=color:#75715e>## test DNS network</span>
+$ kubectl run curl --image<span style=color:#f92672>=</span>radial/busyboxplus:curl -i --tty
+If you don<span style=color:#960050;background-color:#1e0010>&#39;</span>t see a command prompt, try pressing enter.
+<span style=color:#f92672>[</span> root@curl-2716574283-xr8zd:/ <span style=color:#f92672>]</span>$
+</code></pre></div><h3 id=deploy-kubernetes-167-on-ubuntu-1604-xenial-minion-node>Deploy kubernetes 1.6.7 on ubuntu 16.04 xenial [minion node]</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>## master node</span>
+$ sudo -i
+<span style=color:#75715e># kubeadm token list | grep authentication,signing | awk &#39;{prin t $1}&#39;</span>
+4****f.****78b31****9**
+</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>## minion node</span>
+$ sudo -i
+<span style=color:#75715e># kubeadm join --token 4****f.****78b31****9** &lt;master node ip&gt;:6443</span>
+<span style=color:#f92672>[</span>kubeadm<span style=color:#f92672>]</span> WARNING: kubeadm is in beta, please <span style=color:#66d9ef>do</span> not use it <span style=color:#66d9ef>for</span> production clusters.
+<span style=color:#f92672>[</span>preflight<span style=color:#f92672>]</span> Running pre-flight checks
+<span style=color:#f92672>[</span>discovery<span style=color:#f92672>]</span> Trying to connect to API Server <span style=color:#e6db74>&#34;172.31.10.219:6443&#34;</span>
+<span style=color:#f92672>[</span>discovery<span style=color:#f92672>]</span> Created cluster-info discovery client, requesting info from <span style=color:#e6db74>&#34;https://172.31.10.219:6443&#34;</span>
+<span style=color:#f92672>[</span>discovery<span style=color:#f92672>]</span> Cluster info signature and contents are valid, will use API Server <span style=color:#e6db74>&#34;https://172.31.10.219:6443&#34;</span>
+<span style=color:#f92672>[</span>discovery<span style=color:#f92672>]</span> Successfully established connection with API Server <span style=color:#e6db74>&#34;172.31.10.219:6443&#34;</span>
+<span style=color:#f92672>[</span>bootstrap<span style=color:#f92672>]</span> Detected server version: v1.6.7
+<span style=color:#f92672>[</span>bootstrap<span style=color:#f92672>]</span> The server supports the Certificates API <span style=color:#f92672>(</span>certificates.k8s.io/v1beta1<span style=color:#f92672>)</span>
+<span style=color:#f92672>[</span>csr<span style=color:#f92672>]</span> Created API client to obtain unique certificate <span style=color:#66d9ef>for</span> this node, generating keys and certificate signing request
+<span style=color:#f92672>[</span>csr<span style=color:#f92672>]</span> Received signed certificate from the API server, generating KubeConfig...
+<span style=color:#f92672>[</span>kubeconfig<span style=color:#f92672>]</span> Wrote KubeConfig file to disk: <span style=color:#e6db74>&#34;/etc/kubernetes/kubelet.conf&#34;</span>
+
+Node join complete:
+* Certificate signing request sent to master and response
+  received.
+* Kubelet informed of new secure connection details.
+
+Run <span style=color:#e6db74>&#39;kubectl get nodes&#39;</span> on the master to see this machine join.
+</code></pre></div><h3 id=kompose-helps-developers-move-docker-compose-files-to-kubernetes>Kompose Helps Developers Move Docker Compose Files to Kubernetes</h3><p><a href=http://blog.kubernetes.io/2017/08/kompose-helps-developers-move-docker.html>http://blog.kubernetes.io/2017/08/kompose-helps-developers-move-docker.html</a></p><h3 id=deploy-applications>Deploy applications</h3><p><a href=https://kubernetes.io/docs/concepts/containers/images/>Specifying ImagePullSecrets on a Pod</a>
+Note: This approach is currently the recommended approach for GKE, GCE, and any cloud-providers where node creation is automated.
+Kubernetes supports specifying registry keys on a pod.</p><p>Creating a Secret with a Docker Config,Run the following command, substituting the appropriate uppercase values:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl create secret docker-registry myregistrykey --docker-server<span style=color:#f92672>=</span>DOCKER_REGISTRY_SERVER --docker-username<span style=color:#f92672>=</span>DOCKER_USER --docker-password<span style=color:#f92672>=</span>DOCKER_PASSWORD --docker-email<span style=color:#f92672>=</span>DOCKER_EMAIL
+secret <span style=color:#e6db74>&#34;myregistrykey&#34;</span> created.
+
+$ kubectl -n development create secret docker-registry m4g-harbor-registry --docker-server<span style=color:#f92672>=</span>harbor.madeforgoods.com --docker-username<span style=color:#f92672>=</span>docker --docker-password<span style=color:#f92672>=</span>****** --docker-email<span style=color:#f92672>=</span>**********
+</code></pre></div><h3 id=storage-use-glusterfs>Storage use glusterfs</h3><pre><code>现在ami市场启动三台centos机器
+$ sudo yum update -y &amp;&amp; sudo setenforce 0 &amp;&amp; sudo sed -i 's|SELINUX=enforcing|SELINUX=disabled|g' /etc/selinux/config &amp;&amp; sudo systemctl disable firewalld &amp;&amp; sudo systemctl stop firewalld
+
+
+# 先安装 gluster 源
+$ sudo yum install centos-release-gluster -y 
+# 安装 glusterfs 组件 
+$ sudo yum install -y glusterfs glusterfs-server glusterfs-fuse glusterfsrdma glusterfs-geo-replication glusterfs-devel 
+## 创建 glusterfs 目录 
+#$ mkdir /opt/glusterd
+## 修改 glusterd 目录 
+#$ sed -i 's/var\/lib/opt/g' /etc/glusterfs/glusterd.vol 
+# 启动 glusterfs 
+$ sudo systemctl start glusterd.service &amp;&amp; sudo systemctl enable glusterd.service &amp;&amp; sudo systemctl status glusterd.service
+
+
+# 配置 hosts 
+$ sudo vi /etc/hosts 
+172.31.2.93 gfs-01
+172.31.3.19 gfs-02
+172.31.6.141 gfs-03
+# 开放端口
+$ sudo iptables -I INPUT -p tcp --dport 24007 -j ACCEPT 
+# 创建存储目录 
+$ sudo mkdir /data/glusterfs/data -p
+# 添加节点到 集群 
+# 执行操作的本机不需要probe 本机 
+[root@sz-pg-oam-docker-test-001 ~]#
+gluster peer probe gfs-02 
+gluster peer probe gfs-03 
+# 查看集群状态 
+# gluster peer status 
+Number of Peers: 2 
+Hostname: sz-pg-oam-docker-test-002.tendcloud.com 
+Uuid: f25546cc-2011-457d-ba24-342554b51317 
+State: Peer in Cluster (Connected) 
+Hostname: sz-pg-oam-docker-test-003.tendcloud.com 
+Uuid: 42b6cad1-aa01-46d0-bbba-f7ec6821d66d 
+State: Peer in Cluster (Connected)
+
+
+# 创建分布卷 
+# sudo gluster volume create k8s-volume transport tcp gfs-01:/data/glusterfs/data gfs-02:/data/glusterfs/data gfs-03:/data/glusterfs/data force
+
+sudo fdisk /dev/xvdf
+sudo mkfs.xfs /dev/xvdf1
+sudo umount /data/glusterfs/data
+sudo mount /dev/xvdf1 /data/glusterfs/data
+
+# 查看volume状态 
+# sudo gluster volume info
+Volume Name: k8s-volume
+Type: Distribute
+Volume ID: 43358010-b01b-400a-93c9-945e3bb5dc1c
+Status: Created
+Snapshot Count: 0
+Number of Bricks: 3
+Transport-type: tcp
+Bricks:
+Brick1: gfs-01:/data/glusterfs/data
+Brick2: gfs-02:/data/glusterfs/data
+Brick3: gfs-03:/data/glusterfs/data
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+
+
+# 启动 分布卷 
+# sudo gluster volume start k8s-volume
+
+
+# 开启 指定 volume 的配额 
+$ sudo gluster volume quota k8s-volume enable 
+# 限制 指定 volume 的配额 
+$ sudo gluster volume quota k8s-volume limit-usage / 30GB 
+# 设置 cache 大小, 默认32MB 
+$ sudo gluster volume set k8s-volume performance.cache-size 500MB
+# 设置 io 线程, 太大会导致进程崩溃 
+$ sudo gluster volume set k8s-volume performance.io-thread-count 16 
+# 设置 网络检测时间, 默认42s 
+$ sudo gluster volume set k8s-volume network.ping-timeout 10 
+# 设置 写缓冲区的大小, 默认1M 
+$ sudo gluster volume set k8s-volume performance.write-behind-window-size 500MB
+
+
+# k8s nodes
+[https://packages.ubuntu.com/xenial/glusterfs-client]
+
+sudo add-apt-repository ppa:gluster/glusterfs-3.11
+sudo apt-get update -y
+sudo apt-get install glusterfs-common fuse glusterfs-client -y
+
+sudo apt-get install glusterfs-client -y
+</code></pre><h1 id=maintain--common-commands>Maintain && Common Commands</h1><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ kubectl get nodes
+NAME                  STATUS    AGE       VERSION
+ip-***-***-***-***    Ready     17d       v1.6.7
+ip-***-***-***-***    Ready     32m       v1.6.7
+ip-***-***-***-***    Ready     27m       v1.6.7
+ip-***-***-***-***    Ready     17d       v1.6.7
+ip-***-***-***-***    Ready     7d        v1.6.7
+ip-***-***-***-***    Ready     17d       v1.6.7
+
+$ kubectl get po --all-namespaces -o wide
+
+$ kubectl get nodes --show-labels
+
+$ kubectl delete node &lt;minion-hostname&gt;
+
+$ kubectl label nodes &lt;minion-hostname&gt; ***<span style=color:#f92672>=</span>***
+
+$ kubectl label nodes &lt;minion-hostname&gt; role-
+
+$ kubectl get services
+
+$ kubectl -n development delete service &lt;service name&gt;
+
+$ kubectl -n development delete StatefulSet &lt;StatefulSet name&gt;
+
+$ kubectl -n development delete deployment &lt;deployment name&gt;
+
+$ kubectl create namespace &lt;namespace name&gt;
+
+$ kubectl get Deployments --all-namespaces
+
+$ kubectl -n kube-system describe po &lt;pod name&gt;
+
+$ kubectl apply -f &lt;yaml name&gt;.yaml
+</code></pre></div><h1 id=issue--todo>Issue && Todo</h1><ul><li>使用dpkg -i *.deb 的时候出现依赖没有安装</li></ul><p>使用apt-get -f -y install 解决依赖问题后再执行dpkg安装deb包</p><ul><li><p>master node cluster</p></li><li><p>elasticsearch cluster</p></li><li><p>efk cluster</p></li><li><p>monitor</p></li><li><p><a href=https://kubernetes.io/docs/tasks/administer-cluster/kubeadm-upgrade-1-7/>Upgrading kubeadm clusters from 1.6 to 1.7</a></p></li></ul><pre><code>升级master
+## [ubuntu中apt-get upgrade如何忽略某项 - SegmentFault](https://segmentfault.com/q/1010000000657514)
+# apt-mark hold docker-engine
+# apt-get upgrade -y
+$ export KUBECONFIG=$HOME/admin.conf
+$ kubectl delete daemonset kube-proxy -n kube-system
+[kubeadm] WARNING: kubeadm is in beta, please do not use it for production clusters.
+[init] Using Kubernetes version: v1.7.5
+[init] Using Authorization modes: [Node RBAC]
+[preflight] Skipping pre-flight checks
+[kubeadm] WARNING: starting in 1.8, tokens expire after 24 hours by default (if you require a non-expiring token use --token-ttl 0)
+[certificates] Using the existing CA certificate and key.
+[certificates] Using the existing API Server certificate and key.
+[certificates] Using the existing API Server kubelet client certificate and key.
+[certificates] Using the existing service account token signing key.
+[certificates] Using the existing front-proxy CA certificate and key.
+[certificates] Using the existing front-proxy client certificate and key.
+[certificates] Valid certificates and keys now exist in &quot;/etc/kubernetes/pki&quot;
+[kubeconfig] Using existing up-to-date KubeConfig file: &quot;/etc/kubernetes/admin.conf&quot;
+[kubeconfig] Using existing up-to-date KubeConfig file: &quot;/etc/kubernetes/kubelet.conf&quot;
+[kubeconfig] Using existing up-to-date KubeConfig file: &quot;/etc/kubernetes/controller-manager.conf&quot;
+[kubeconfig] Using existing up-to-date KubeConfig file: &quot;/etc/kubernetes/scheduler.conf&quot;
+[apiclient] Created API client, waiting for the control plane to become ready
+[apiclient] All control plane components are healthy after 54.502116 seconds
+[token] Using token: 6060e2.e9f36106911664fc
+[apiconfig] Created RBAC rules
+[addons] Applied essential addon: kube-proxy
+[addons] Applied essential addon: kube-dns
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run (as a regular user):
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+  http://kubernetes.io/docs/admin/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join --token 6060e2.e9f36106911664fc 172.31.10.219:6443
+
+## [Integrating Kubernetes via the Addon](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
+# kubectl apply -f &quot;https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&quot;
+
+升级Node
+1. 升级安装包 
+$ sudo apt-mark hold docker-engine
+$ sudo apt-get upgrade -y
+2. 重启kubelet
+$ sudo systemctl restart kubelet
+</code></pre><ul><li>ingress
+<a href=https://kubernetes.io/docs/concepts/services-networking/ingress/>https://kubernetes.io/docs/concepts/services-networking/ingress/</a></li></ul><h1 id=reference--document>Reference && Document</h1></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=/posts/deploy-docker-swarm-use-multi-consul-and-swarm-manager/><span class=button__icon>←</span>
+<span class=button__text>Deploy docker swarm use multi consul and swarm-manager</span></a></span>
+<span class="button next"><a href=/posts/fix-macos-mojave-ssh-connect-trouble/><span class=button__text>fix-macos-mojave-ssh-connect-trouble</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>$ cd /home</span>
+<span class=logo__cursor></span></a><div class=copyright><span>© 2021 Powered by <a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></span>
+<span>Theme created by <a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span></div></div></footer><script src=/assets/main.js></script><script src=/assets/prism.js></script></div></body></html>

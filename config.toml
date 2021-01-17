@@ -84,7 +84,7 @@ paginate = 5
     # alt = "Your example logo alt text"
 
     [languages.zh.menu]
-      [[languages.en.menu.main]]
+      [[languages.zh.menu.main]]
         identifier = "about"
         name = "关于"
         url = "/about"

@@ -28,12 +28,12 @@ paginate = 5
 [languages]
   [languages.en]
     title = "opsforce"
-    subtitle = "透过表象看本质"
+    subtitle = "Seeing essence through appearance"
     keywords = ""
     copyright = ""
-    menuMore = "更多"
+    menuMore = "Show more"
     writtenBy = "Written by"
-    readMore = "阅读全文"
+    readMore = "Read more"
     readOtherPosts = "Read other posts"
     newerPosts = "Newer posts"
     olderPosts = "Older posts"
@@ -44,7 +44,7 @@ paginate = 5
     # lastModDisplay = ""
 
     [languages.en.params.logo]
-      logoText = "$ cd /home"
+      logoText = "opsforce"
       logoHomeLink = "/"
     # or
     #
@@ -56,7 +56,34 @@ paginate = 5
         identifier = "about"
         name = "About"
         url = "/about"
+
+  [languages.zh]
+    title = "opsforce"
+    subtitle = "透过表象看本质"
+    keywords = ""
+    copyright = ""
+    menuMore = "更多"
+    writtenBy = "Written by"
+    readMore = "阅读全文"
+    readOtherPosts = "阅读其他文章"
+    newerPosts = "新文章"
+    olderPosts = "旧文章"
+    minuteReadingTime = "min read"
+    dateFormatSingle = "2006-01-02"
+    dateFormatList = "2006-01-02"
+    # leave empty to disable, enter display text to enable
+    # lastModDisplay = ""
+
+    [languages.en.params.logo]
+      logoText = "opsforce"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
+
+    [languages.en.menu]
       [[languages.en.menu.main]]
-        identifier = "showcase"
-        name = "Showcase"
-        url = "/showcase"
+        identifier = "about"
+        name = "关于"
+        url = "/about"

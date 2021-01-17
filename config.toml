@@ -74,7 +74,7 @@ paginate = 5
     # leave empty to disable, enter display text to enable
     # lastModDisplay = ""
 
-    [languages.en.params.logo]
+    [languages.zh.params.logo]
       logoText = "opsforce"
       logoHomeLink = "/"
     # or
@@ -82,7 +82,7 @@ paginate = 5
     # path = "/img/your-example-logo.svg"
     # alt = "Your example logo alt text"
 
-    [languages.en.menu]
+    [languages.zh.menu]
       [[languages.en.menu.main]]
         identifier = "about"
         name = "关于"

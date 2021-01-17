@@ -27,13 +27,13 @@ paginate = 5
 
 [languages]
   [languages.en]
-    title = "Coding The Life"
-    subtitle = "A simple theme for Hugo"
+    title = "opsforce"
+    subtitle = "透过表象看本质"
     keywords = ""
     copyright = ""
-    menuMore = "Show more"
+    menuMore = "更多"
     writtenBy = "Written by"
-    readMore = "Read more"
+    readMore = "阅读全文"
     readOtherPosts = "Read other posts"
     newerPosts = "Newer posts"
     olderPosts = "Older posts"

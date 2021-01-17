@@ -1,5 +1,5 @@
 baseurl = "/"
-languageCode = "zh-cn"
+languageCode = "zh-CN"
 theme = "hello-friend"
 paginate = 5
 
